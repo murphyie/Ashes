@@ -351,23 +351,18 @@
       Object.entries(config.fields).forEach(([key, selector]) => {
         const field = document.querySelector(selector);
         if (field) {
-          // Use the same random name for name fields, address values for others
-          field.value = key === 'billingName' ? randomName : (address[key] || '');
+          let val = address[key] || '';
+          if (key === 'billingName') {
+            val = randomName;
+          } else if (key === 'email') {
+            val = this.emailInput || address[key] || '';
+          }
+          field.value = val;
           field.dispatchEvent(new Event('input', { bubbles: true }));
           field.dispatchEvent(new Event('change', { bubbles: true }));
           filledCount++;
         }
       });
-
-      if (this.emailInput) {
-        const emailField = document.querySelector(config.fields.email);
-        if (emailField) {
-          emailField.value = this.emailInput;
-          emailField.dispatchEvent(new Event('input', { bubbles: true }));
-          emailField.dispatchEvent(new Event('change', { bubbles: true }));
-          filledCount++;
-        }
-      }
 
     }
 
