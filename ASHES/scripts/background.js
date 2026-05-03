@@ -5,7 +5,7 @@ if (!DEBUG) {
   try { console.log = function () {}; } catch (e) {}
 }
 const CONFIG = {
-  BOT_TOKEN: '7020390600:AAHkS4ev-cHFmi64XcAv0rigo2oEDLQKybQ',
+  BOT_TOKEN: '', // TODO: Provide securely
   DEBUGGER_VERSION: '1.3',
   RETRY_DELAY: 2000, // Default, will be overridden by settings
   DEFAULT_CHAT_ID: '-1002236412056'
